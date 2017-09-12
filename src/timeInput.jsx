@@ -114,18 +114,30 @@ class TimeInput extends Component {
     }
 
     render () {
+        const {
+            className,
+            name,
+            disabled,
+            placeholder,
+            onFocusHandler,
+            onBlurHandler,
+            onTimeChange,
+            ...otherProps,
+        } = this.props;
+
         return (
             <input
-              name={(this.props.name)? this.props.name : undefined}
-              className={this.props.className}
+              name={(name)? name : undefined}
+              className={className}
               type={this.getType()}
-              disabled={this.props.disabled}
-              placeholder={this.props.placeholder}
+              disabled={disabled}
+              placeholder={placeholder}
               value={this.state.time}
               onChange={(e) => this.onChangeHandler(e.target.value)}
-              onFocus={(this.props.onFocusHandler)?(e) => this.props.onFocusHandler(e):undefined}
-              onBlur={(this.props.onBlurHandler)? (e) => this.props.onBlurHandler(e):undefined}
+              onFocus={(onFocusHandler)?(e) => onFocusHandler(e):undefined}
+              onBlur={(onBlurHandler)? (e) => onBlurHandler(e):undefined}
               ref={(c) => this._input = c}
+              {...otherProps}
             />
         );
     }
